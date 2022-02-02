@@ -105,7 +105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3219717451134164291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83feb7272843fef4fbd898461e17d19e, type: 3}
+  m_Script: {fileID: 11500000, guid: bb3dfbbc699845a488e9874128641629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerScoreSlider: {fileID: 0}
