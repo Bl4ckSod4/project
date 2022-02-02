@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AIStateID
+public enum AIStateID//перечисления стэйтов для АИ
 {
     ChasePlayer,
     Idle,
@@ -10,7 +10,7 @@ public enum AIStateID
     Patrol
 }
 
-public interface AIState
+public interface AIState//интерфейс для реализации в каждом стэйте трёх методов. Требуется наследование этого интерфейса при создании нового стэйта
 {
     AIStateID GetID();
     void Enter(AIAgent agent);
