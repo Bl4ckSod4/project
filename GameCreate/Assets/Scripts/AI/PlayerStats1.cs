@@ -4,28 +4,18 @@ using UnityEngine;
 
 public class PlayerStats1 : MonoBehaviour
 {
+    //класс с параметрами солдата
     [Header("Characteristics")]
-    public float speed;
-    public float maxHealth = 100.0f;
-    public float minHealth = 0.0f;
-    public float currentHealth = 100.0f;
-    public float aimness;//точность
-    public float damage = 10.0f;
+    public float speed;//скорость ходьбы
+    public float maxHealth = 100.0f;//максимальное здоровье
+    public float minHealth = 0.0f;//минимальное здоровье
+    public float currentHealth = 100.0f;//текущее здоровье
+    public float aimness;//разброс
+    public float damage = 10.0f;//урон
     public bool freedomless;//послушание
-    public bool isDead = false;
+    public bool isDead = false;//флаг, показывающий что текущая цель уничтожена и возврат в Idle
     
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void TakeDamage(float Damage)
+    public void TakeDamage(float Damage)//наносит урон здоровью при попадании в текущего бойца
     {
         currentHealth -= Damage;
         if(currentHealth <= 0)
@@ -36,7 +26,7 @@ public class PlayerStats1 : MonoBehaviour
     }
     public void Die()
     {
-        gameObject.tag = "Finish";
+        gameObject.tag = "Finish";//меняем тэг чтобы убрать из массива целей
         //enabled = false;
         isDead = true;
         Destroy(gameObject);
