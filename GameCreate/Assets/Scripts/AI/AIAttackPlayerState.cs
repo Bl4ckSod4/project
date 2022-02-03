@@ -6,15 +6,14 @@ public class AIAttackPlayerState : AIState
 {
     public float timer = 0f;//таймер задержки между выстрелами
     public float nextTimeToFire = 0;
-    private int _bulletsPerMag;//патроны в магазине
+    private int bulletsPerMag;//патроны в магазине
     
     AIAgent agent;//ссылка на солдата, у которого проигрываем этот стэйт в стэйт машин
     
     public void Enter(AIAgent agent)
     {
-        Debug.Log("ENTER");
         nextTimeToFire = agent.weapon.fireRate;//переменная отвечает за скорострельность и равна показателю скорострельности у текущего оружия солдата
-        _bulletsPerMag = agent.weapon.bulletsPerMag;//количество патронов в магазине равно количеству патронов в магазине у текущего оружия солдата
+        bulletsPerMag = agent.weapon.bulletsPerMag;//количество патронов в магазине равно количеству патронов в магазине у текущего оружия солдата
     }
 
     public void Exit(AIAgent agent)
@@ -40,7 +39,7 @@ public class AIAttackPlayerState : AIState
        if(timer > nextTimeToFire && agent.inSight) //если таймер больше показателя скорострельности и враг в поле зрения
        {
         
-            if(_bulletsPerMag > 0)//если патронов в магазине больше 0
+            if(bulletsPerMag > 0)//если патронов в магазине больше 0
             {
                 agent.animator.SetBool("Reload", false);
                 Debug.Log("STRELYAYU");//строка для отладки работоспособности механики
@@ -48,7 +47,7 @@ public class AIAttackPlayerState : AIState
                 agent.transform.LookAt(agent.currentTarget);
                 agent.weapon.Fire();
                 timer = 0f;
-                _bulletsPerMag--;
+                bulletsPerMag--;
 
                 
            
@@ -68,7 +67,7 @@ public class AIAttackPlayerState : AIState
                 agent.animator.SetBool("Fire", false);
                 Debug.Log("RELOAD");//строка для отладки работоспособности механики
                 agent.animator.SetBool("Reload", true); 
-                _bulletsPerMag = agent.weapon.bulletsPerMag;//пополняем магазин
+                bulletsPerMag = agent.weapon.bulletsPerMag;//пополняем магазин
 
             }
            
