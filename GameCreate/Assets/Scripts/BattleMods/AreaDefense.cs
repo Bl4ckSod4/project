@@ -14,6 +14,7 @@ public class AreaDefense : Area//наследуем класс битвы за область, перезаписывая
     {
         SetScore();
         CheckProgress();
+        ResultByTimeOut();
     }
     protected override void SetScore()//начисление очков и обновление шкалы захвата, метод перезаписан, начисляет очки за успешную защиту и запускает таймер при успешных действиях противника
     {

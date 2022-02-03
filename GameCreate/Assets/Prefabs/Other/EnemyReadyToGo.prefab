@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 2768521434882206278}
   - component: {fileID: 2768521434882206279}
   m_Layer: 0
-  m_Name: AIEnemyReadyToGo
+  m_Name: EnemyReadyToGo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -789,7 +789,7 @@ MonoBehaviour:
   nextTimeToFire: 1
   bulletsPerMag: 7
   muzzleFlash: {fileID: 100008, guid: b52aefc4516176f4c9080989152f9db6, type: 3}
-  muzzle: {fileID: 0}
+  muzzle: {fileID: 2768521436312170088}
   agent: {fileID: 2768521434882206274}
   targetTransform: {fileID: 0}
   aimTransform: {fileID: 2768521436312170088}

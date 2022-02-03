@@ -9,22 +9,21 @@ public class ExpodeTargets : Area
 
     [SerializeField] GameObject[] targets;//массив целей для уничтожения
 
-    void Start()
+    void Start()//по тэгу высчитывается сколько целей нужно уничтожить чтобы победить
     {
         targets = GameObject.FindGameObjectsWithTag("TargetBox");
         targetsCountStart = targets.Length;
+        ScoreToWin = targetsCountStart;
+        UpdateSliders();
     }
     private void Update()
     {        
         SetScore();
         CheckProgress();
+        playerScoreText.text +="/"+ScoreToWin.ToString();
+        ResultByTimeOut();
     }
-    protected override void SetScore()//перезаписанный метод, определяет условия победы, когда все цели уничтожены счёт команды игрока становится 101
-    {
-        CheckTargets();
-        scorePlayer = 101 - (100/ targetsCountStart) * targetsCountCurrent;
-    }
-    private void CheckTargets()//проверяет сколько осталось целей для уничтожения
+    protected override void SetScore()//перезаписанный метод, определяет условия победы
     {
         int temp = 0;
         foreach (GameObject target in targets)
@@ -35,6 +34,6 @@ public class ExpodeTargets : Area
             }
         }
         targetsCountCurrent = targetsCountStart - temp;
+        scorePlayer = targetsCountStart - targetsCountCurrent;
     }
-
 }
