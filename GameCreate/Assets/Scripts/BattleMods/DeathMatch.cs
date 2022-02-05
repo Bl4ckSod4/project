@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DeathMatch : Area 
 {
-
-
     void Update()
     {
         CheckProgress();

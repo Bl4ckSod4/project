@@ -6,11 +6,11 @@ using UnityEngine.UI;
 //–одительский класс дл€ режимов игры, содержит ссылки на элементы интерфейса, данные об очках и услови€х победы. –асшир€етс€ с помощью наследовани€ дл€ других режимов игры.
 public class Area : MonoBehaviour
 {
+    
+    [SerializeField] protected int ScoreToWin = 100;
     //„исловое отображение прогресса
     protected Text playerScoreText;
     protected Text enemyScoreText;
-    [SerializeField] protected int ScoreToWin = 100;
-
     //ѕрогресс бары
     protected Slider playerScoreSlider;
     protected Slider enemyScoreSlider;
@@ -22,11 +22,11 @@ public class Area : MonoBehaviour
     //количество членов команды в зоне
     public int team1 = 0;
     public int team2 = 0;
-
-    public bool isGame = true;
     //врем€ до конца раунда в секундах
     [SerializeField] protected float timeOut=10.0f;
-     
+    //бой в процессе или нет (закончен)
+    public bool isGame = true;
+
     private void Awake()
     {
         UpdateSliders();
@@ -76,6 +76,10 @@ public class Area : MonoBehaviour
     }
     protected void CheckProgress()//провер€ет набрано ли нужное дл€ победы число очков захвата
     {
+        if(!isGame)
+        {
+            return;
+        }
         if (playerScoreSlider != null){ playerScoreSlider.value = scorePlayer;}//обновл€ет отображение прогресса
         if (enemyScoreSlider != null) { enemyScoreSlider.value = scoreEnemy; }
         if (playerScoreText != null)
@@ -92,11 +96,13 @@ public class Area : MonoBehaviour
         {
             isGame = false;
             Debug.Log("Player's team win!");
+            GameManager.instance.SetGame(isGame);
         }
         else if(scoreEnemy >= ScoreToWin)
         {
             isGame = false;
             Debug.Log("Enemy's team win!");
+            GameManager.instance.SetGame(isGame);
         }
         
     }
@@ -107,6 +113,7 @@ public class Area : MonoBehaviour
         {
             isGame = false;
             Debug.Log("Time is Over");
+            GameManager.instance.SetGame(isGame);
             return;
         }
         if (isGame)

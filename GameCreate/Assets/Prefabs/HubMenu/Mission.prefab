@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 706014753367568960}
   - component: {fileID: 706014753367568963}
   - component: {fileID: 706014753367568962}
+  - component: {fileID: 5209287147725860556}
   m_Layer: 0
   m_Name: Mission1
   m_TagString: Untagged
@@ -96,6 +97,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5209287147725860556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706014753367568991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9c4d73aadc982408da233c4d819ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mission: default
+  missinText: {fileID: 3581542042649413545}
+  plate: {fileID: 0}
 --- !u!1 &2832414691304185712
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +200,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5366774751999274326}
-  - component: {fileID: 2180525444951650235}
   m_Layer: 0
   m_Name: Mission
   m_TagString: Untagged
@@ -208,21 +223,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2180525444951650235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3587797573910887418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c9c4d73aadc982408da233c4d819ba4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mission: default
-  missinText: {fileID: 3581542042649413545}
-  plate: {fileID: 706014753367568991}
 --- !u!1 &6072238995757019888
 GameObject:
   m_ObjectHideFlags: 0

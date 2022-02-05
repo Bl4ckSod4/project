@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Enemy
   - TargetBox
+  - MainManager
+  - GameManager
   layers:
   - Default
   - TransparentFX
