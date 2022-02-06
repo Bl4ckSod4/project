@@ -9,6 +9,7 @@ TagManager:
   - TargetBox
   - MainManager
   - GameManager
+  - MissionSquare
   layers:
   - Default
   - TransparentFX

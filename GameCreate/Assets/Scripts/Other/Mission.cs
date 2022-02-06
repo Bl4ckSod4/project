@@ -1,21 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Mission : MonoBehaviour
+//класс описывает миссию, все данные нужные для её загрузки, отображения, наград и тд
+public class Mission
 {
-    [SerializeField] string mission="default";
-    [SerializeField] Text missinText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        missinText.text = mission;
-    }
+    public string missionName = "Дезматч";
+    public string sceneName = "Deathmatch";
+    public int rewardMoney = 1000;
 
-    // Update is called once per frame
-    private void OnMouseDown()
-    {
-        Hub.instanse.SetMission(mission);
-    }
+    //public string missionName { get; set; }
+    //public int rewardMoney { get; set; }    
 }

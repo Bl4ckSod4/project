@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainManager : MonoBehaviour
 {
     public static MainManager instanse;
-
-    public string reward = "�������";
+    //Переменная для информации о награде
+    public string reward = "Награда";
+    //Текущий экран хаба
     public int screen = 0;
-    // Start is called before the first frame update
+    public int money = 0;
+
+    //Дает доступ из любого места кода, по MainManager.instanse.
     void Start()
     {
         instanse = this;
@@ -18,7 +21,7 @@ public class MainManager : MonoBehaviour
             Hub.instanse.SetScreen(0);
         }
     }
-
+    //Позволяет существовать в единственном экземпляре и независимо от загрузки сцен
     void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("MainManager");
@@ -27,13 +30,12 @@ public class MainManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
         DontDestroyOnLoad(this.gameObject);
     }
-
+    //метод загружает сцену Хаб, принимает целое число в качестве номера подменю хаба 0 - выбор миссии 1- отряд и т.д.
     public void ReturnHub(int screenTemp=5)
     {
-        SceneManager.LoadScene("HubScreens");
+        SceneManager.LoadScene("Hub Screen");
         screen = screenTemp;
     }
 }
