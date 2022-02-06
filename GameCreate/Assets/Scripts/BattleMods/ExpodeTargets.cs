@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ExpodeTargets : Area
 {
-    private int targetsCountStart;//сколько целей было в начале
-    private int targetsCountCurrent;//сколько целей осталось
+    private int targetsCountStart;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    private int targetsCountCurrent;//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    [SerializeField] GameObject[] targets;//массив целей для уничтожения
+    [SerializeField] GameObject[] targets;//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    void Start()//по тэгу высчитывается сколько целей нужно уничтожить чтобы победить
+    void Start()//пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
         targets = GameObject.FindGameObjectsWithTag("TargetBox");
         targetsCountStart = targets.Length;
@@ -23,7 +23,7 @@ public class ExpodeTargets : Area
         playerScoreText.text +="/"+ScoreToWin.ToString();
         ResultByTimeOut();
     }
-    protected override void SetScore()//перезаписанный метод, определяет условия победы
+    protected override void SetScore()//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     {
         int temp = 0;
         foreach (GameObject target in targets)

@@ -42,7 +42,6 @@ public class AIAttackPlayerState : AIState
             if(bulletsPerMag > 0)//если патронов в магазине больше 0
             {
                 agent.animator.SetBool("Reload", false);
-                Debug.Log("STRELYAYU");//строка для отладки работоспособности механики
                 agent.animator.SetBool("Fire", true);
                 agent.transform.LookAt(agent.currentTarget);
                 agent.weapon.Fire();

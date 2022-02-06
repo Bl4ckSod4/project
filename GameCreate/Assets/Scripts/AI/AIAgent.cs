@@ -23,6 +23,8 @@ public class AIAgent : MonoBehaviour
     public string tag = "Enemy";//тэг врага для текущего солдата(по умолчанию enemy, выбирать в инспекторе)
     void Start()
     {
+        navMeshAgent.speed = playerStats.speed;
+        //navMeshAgent.stoppingDistance = config.maxSightDistance;
         animator = GetComponent<Animator>();
         UpdateTargets();
         navMeshAgent = GetComponent<NavMeshAgent>();
