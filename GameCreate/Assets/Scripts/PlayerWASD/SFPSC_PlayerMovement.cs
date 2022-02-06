@@ -36,12 +36,14 @@ public class SFPSC_PlayerMovement : MonoBehaviour
     public bool IsGrounded { get { return isGrounded; } }
 
     private Vector3 inputForce;
-    private int i = 0;
+    //private int i = 0;
     private float prevY;
     private void FixedUpdate()
     {
         if (false)
-            isGrounded = true;
+        {
+            //isGrounded = true;
+        }
         else
         {
             // I recieved several messages that there are some bugs and I found out that the ground check is not working properly

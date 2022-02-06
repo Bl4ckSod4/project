@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour//скрипт создает новых бойцов 
 {
-    [SerializeField] GameObject[] spawnPoints;//точки спавна
-    [SerializeField] GameObject spawnObject;//что спавнится
-    [SerializeField] int spawnRate=1;//частота спавна в секундах
-    [SerializeField] GameObject wayPoint;//точка назначения
-    private GameObject[] team;
-    [SerializeField] string spawnTag;
-    private bool spawnBlock=false;
-    [SerializeField] Area area;
-    [SerializeField] int soldiersInTeamMax=4;
+    [SerializeField] GameObject[] spawnPoints;  //точки спавна
+    [SerializeField] GameObject spawnObject;    //что спавнится
+    [SerializeField] GameObject wayPoint;       //точка назначения    
+    [SerializeField] Area area;                 //ссылка на объект содержащий скрип игрового режима
+    [SerializeField] string spawnTag;           //Тэг принадлежности к команде создаваемого бойца
+    [SerializeField] int soldiersInTeamMax=4;   //максимум бойцов в команде
+    //[SerializeField] int spawnRate = 1;         //частота спавна в секундах
+
+    private GameObject[] team;                  //бойцы в отряде
 
     void Start()
     {
@@ -32,16 +32,16 @@ public class Spawner : MonoBehaviour//скрипт создает новых бойцов
             Spawn();
         }                  
     }
-
-    void Spawn()//спавн бойца
+    //спавн бойца
+    void Spawn()
     {
         GameObject temp= Instantiate(spawnObject,spawnPoints[Random.Range(0,spawnPoints.Length)].transform.position,spawnObject.transform.rotation);
         temp.tag = spawnTag;
         temp.name = spawnTag;
         temp.GetComponent<AIAgent>().waypoints[0] = wayPoint;
         temp.GetComponent<AIAgent>().waypoints[1] = wayPoint;
+        temp.GetComponent<AIAgent>().waypoints[2] = wayPoint;
         temp.GetComponent<AIAgent>().waypoints[3] = wayPoint;
-        temp.GetComponent<AIAgent>().waypoints[4] = wayPoint;
+        
     }
-
 }
