@@ -6,22 +6,34 @@ using UnityEngine.UI;
 
 public class Hub : MonoBehaviour
 {
-    [SerializeField] GameObject[] screens;  //массив экранов Хаба, карта, отряд, настройки и тд
     public static Hub instanse;
-    private string chosenMission;           //выбранная миссия    
-    public Text reward;                     //ссылка на текст экрана награждения  
-    public Text chosenMissionDescription;
-    List<Mission> missions = new List<Mission>();
+    public Mission chosenMission;          //выбранная миссия
+
+    [SerializeField] GameObject[] screens;   //массив экранов Хаба, карта, отряд, настройки и тд
+    [SerializeField] Text moneyText;
+
+    [SerializeField] Text missionRewardText;
+    [SerializeField] Text missionNoteText;
+    [SerializeField] Text missionResultText;          //ссылка на текст экрана награждения  
+
     void Awake()
-    {
+    {        
         instanse = this;
     }
+
     private void Start()
     {
         SetScreen(MainManager.instanse.screen);
+        chosenMission = MainManager.instanse.chosenMission;
+        moneyText.text = "Деньги: " + MainManager.instanse.account.money;
     }
-    //выбор экрана хаба по его номеру
-    public void SetScreen(int screenNumber)
+
+    private void OnDestroy()
+    {
+        MainManager.instanse.chosenMission = chosenMission;
+    }
+        
+    public void SetScreen(int screenNumber)//выбор экрана хаба по его номеру
     {
         foreach (GameObject screen in screens)
         {
@@ -35,35 +47,53 @@ public class Hub : MonoBehaviour
         {
             SetReward();
         }
+        SetMissionsSquare();
     }
-
-    //Назначает выбранную миссию
-    public void SetMission(string mission)
+           
+    private void SetMissionsSquare()//Присваивает иконке на карте ту или иную миссию в зависимости от региона и параметров аккаунта, а так же взятых миссий
     {
-        Debug.Log("Выбрана миссия: "+mission);
-        chosenMission = mission;
-        chosenMissionDescription.text += chosenMission;
-    }
-
-    //начинает выбранную миссию, с заданными параметрами
-    public void StartMission()
-    {
-        SceneManager.LoadScene(chosenMission);
-    }
-    //Присваивает иконке на карте ту или иную миссию в зависимости от параметров (в будущем)
-    private void SetMissionsSquare()
-    {
-        missions.Add(new Mission() { missionName = "Соревнование между ЧВК", sceneName = "Deathmatch", rewardMoney = 1000 });
-        missions.Add(new Mission() { missionName = "Уничтожить ящики с оборудованием", sceneName = "ExplodeTargets", rewardMoney = 2000 });
-
-        foreach (GameObject i in GameObject.FindGameObjectsWithTag("MissionSquares"))
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("MissionCard"))
         {
-
+            i.GetComponent<MissionCard>().SetMission(null);
+            foreach (Mission j in MainManager.instanse.missions)
+            {     
+                if(i.GetComponent<MissionCard>().region==j.region)
+                {
+                    i.GetComponent<MissionCard>().SetMission(j);
+                    break;
+                }
+            }
         }
     }
 
-    public void SetReward()
+    public void ShowTeam()//показать отряд
     {
-        reward.text+= MainManager.instanse.reward;
+        SetScreen(1);
+        GameObject.Find("Barraks Canvas").GetComponent<TeamManager>().ShowSquad();
+    }
+
+    public void PrepareMission() //Показывает экран с подробным описание миссии и кнопкой отправиться.
+    {
+        missionRewardText.text = "Награда:\n " + chosenMission.rewardMoney + " G";
+        missionRewardText.text += "\n" + chosenMission.rewardExp + " EXP";
+        missionNoteText.text = "Описание: \n " + chosenMission.note +
+                               "\n Продолжительнсоть: " + chosenMission.duration +
+                               "\n Сложность: " + chosenMission.difficulty;
+        SetScreen(6);
+    }
+
+    public void StartMission()//начинает выбранную миссию, с заданными параметрами
+    {
+        MainManager.instanse.SaveData();
+        MainManager.instanse.chosenMission = chosenMission;
+        SceneManager.LoadScene(chosenMission.sceneName);
+    }
+    private void SetReward()//выплата награды после миссии (необходимо расширить, чтобы учитывать победа или поражение и бонус)
+    {
+        missionResultText.text = "Награда:\n " + MainManager.instanse.chosenMission.rewardMoney + " G";
+        missionResultText.text += "\n" + MainManager.instanse.chosenMission.rewardExp + " EXP";
+        moneyText.text = "Деньги: " + MainManager.instanse.account.money;
+        MainManager.instanse.account.money += MainManager.instanse.chosenMission.rewardMoney;
+        MainManager.instanse.account.exp += MainManager.instanse.chosenMission.rewardExp;
     }
 }

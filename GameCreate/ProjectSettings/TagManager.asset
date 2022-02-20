@@ -10,6 +10,12 @@ TagManager:
   - MainManager
   - GameManager
   - MissionSquare
+  - PlayerSquare
+  - WeaponCard
+  - Mission Card
+  - Spawner
+  - Position
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -46,4 +52,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 653739405
+    locked: 0
+  - name: Back
+    uniqueID: 1037416615
     locked: 0

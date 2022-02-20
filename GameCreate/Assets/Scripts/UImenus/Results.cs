@@ -7,6 +7,6 @@ public class Results : MonoBehaviour
 {
     public void ReturnHub()
     {
-        MainManager.instanse.ReturnHub();
+         MainManager.instanse.ReturnHub(5); 
     }
 }

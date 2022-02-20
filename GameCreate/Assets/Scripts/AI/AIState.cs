@@ -7,6 +7,7 @@ public enum AIStateID//перечисления стэйтов для АИ
     ChasePlayer,
     Idle,
     Attack,
+    Hold,
     Patrol
 }
 

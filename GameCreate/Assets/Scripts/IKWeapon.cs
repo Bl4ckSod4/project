@@ -40,6 +40,11 @@ public class IKWeapon : MonoBehaviour
     }
     Vector3 GetTargetPosition()
     {
+        if(targetTransform==null)
+        {
+            return new Vector3();
+        }
+
         Vector3 targetDirection = (targetTransform.position + targetOffset) - aimTransform.position; 
         Vector3 aimDirection = aimTransform.forward;
         float blendOut = 0.0f;
@@ -103,8 +108,8 @@ public class IKWeapon : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(aimTransform.transform.position, aimTransform.transform.forward + offsetShoot, out hit, shootRange))
         {
-            Debug.Log(hit.transform.name);
-            PlayerStats1 enemyStats = hit.transform.GetComponent<PlayerStats1>();
+            //Debug.Log(hit.transform.name);
+            PlayerStats enemyStats = hit.transform.GetComponent<PlayerStats>();
             if(enemyStats != null)
             {
                 enemyStats.TakeDamage(damage);

@@ -96,13 +96,13 @@ public class Area : MonoBehaviour
         {
             isGame = false;
             Debug.Log("Player's team win!");
-            GameManager.instance.SetGame(isGame);
+            GameManager.instanse.SetGame(isGame);
         }
         else if(scoreEnemy >= ScoreToWin)
         {
             isGame = false;
             Debug.Log("Enemy's team win!");
-            GameManager.instance.SetGame(isGame);
+            GameManager.instanse.SetGame(isGame);
         }
         
     }
@@ -113,7 +113,7 @@ public class Area : MonoBehaviour
         {
             isGame = false;
             Debug.Log("Time is Over");
-            GameManager.instance.SetGame(isGame);
+            GameManager.instanse.SetGame(isGame);
             return;
         }
         if (isGame)

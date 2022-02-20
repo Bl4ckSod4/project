@@ -29,7 +29,6 @@ public class AIStateMachine
     public void Update()
     {
         GetState(currentState)?.Update(agent); 
-
     }
     
     public void ChangeState(AIStateID newState){
@@ -37,9 +36,5 @@ public class AIStateMachine
         currentState = newState;
         GetState(currentState)?.Enter(agent);
         Debug.Log("new state" + currentState);
-    } 
-
-        
-    
-   
+    }   
 }

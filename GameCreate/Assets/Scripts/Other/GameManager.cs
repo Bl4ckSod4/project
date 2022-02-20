@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public bool isGame;
+    public static GameManager instanse;
+
+    public bool isGame=true;
 
     [SerializeField] GameObject results;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        instance = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        instanse = this;
     }
 
     public void SetGame(bool state)
@@ -31,6 +25,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = true;
         }
     }
+
    void ShowResults()
     {
         Instantiate(results);

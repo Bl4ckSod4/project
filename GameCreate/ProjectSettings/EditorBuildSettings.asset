@@ -5,7 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Menu/Start Screen.unity
+    guid: c53e3dd28aec17e4b9b66b7fce2919b5
+  - enabled: 1
+    path: Assets/Scenes/Menu/Hub Screen.unity
+    guid: a8d11c92671e9ff40a0dd9ce162a1d4c
+  - enabled: 1
+    path: Assets/Scenes/Game Mods Examples/ExplodeTargets.unity
+    guid: 95424cc63d442034cab5bfc561f9ee63
+  - enabled: 1
+    path: Assets/Scenes/Game Mods Examples/Attack Area.unity
+    guid: e5f3af73b3b26fd4faea90fce6aeda4e
+  - enabled: 1
+    path: Assets/Scenes/Game Mods Examples/Battle for Area.unity
+    guid: 7c3e8d6c9a1d1464d89f856b06f94944
+  - enabled: 1
+    path: Assets/Scenes/Game Mods Examples/Deathmatch.unity
+    guid: 34d8ca6ed583d8a49a5b095512d203ab
+  - enabled: 1
+    path: Assets/Scenes/Game Mods Examples/Defense Area.unity
+    guid: 79cefb178ec63dc4cbca8ab08c105f56
   m_configObjects: {}

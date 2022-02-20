@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AIAgent : MonoBehaviour
 {
     public Animator animator;
-    public PlayerStats1 playerStats;//параметры солдата
+    public PlayerStats playerStats;//параметры солдата
     public IKWeapon weapon;//Инверсная кинематика и параметры оружия
     public NavMeshAgent navMeshAgent;
     public AIStateMachine stateMachine;//Стэйт машин для АИ
@@ -20,9 +20,10 @@ public class AIAgent : MonoBehaviour
     public LayerMask obstacleMask;//в инспекторе для всех статичных объектов нужно пометить layer как obstacle, чтобы не видел противника сквозь стены
     [HideInInspector]
     public int index;//индекс в массиве целей для указания в нем текущей цели
-    public string tag = "Enemy";//тэг врага для текущего солдата(по умолчанию enemy, выбирать в инспекторе)
+    public string tagOpponent = "Enemy";//тэг врага для текущего солдата(по умолчанию enemy, выбирать в инспекторе)
     void Start()
     {
+        playerStats = gameObject.GetComponent<PlayerStats>();
         navMeshAgent.speed = playerStats.speed;
         //navMeshAgent.stoppingDistance = config.maxSightDistance;
         animator = GetComponent<Animator>();
@@ -33,13 +34,15 @@ public class AIAgent : MonoBehaviour
         stateMachine.RegisterState(new AIIdleState());
         stateMachine.RegisterState(new AIAttackPlayerState());
         stateMachine.RegisterState(new AIPatrolState());
+        stateMachine.RegisterState(new AIHoldingState());//тестирую новый стейт
         stateMachine.ChangeState(initialState);  
     }
     void Update()
     {
         UpdateTargets();
         GetNearestEnemyIndex(targets);
-        currentTarget = targets[index].transform;
+        if (targets.Length > index)
+        { currentTarget = targets[index].transform; }
         stateMachine.Update();
     }
 
@@ -66,7 +69,7 @@ public class AIAgent : MonoBehaviour
     public void UpdateTargets()//обновляем массив целей(нужно для того, чтобы если некоторые солдаты погибнут, и список целей не был местами Null, а обновился)
     {
         targets = new GameObject[0];//создаем новый массив
-        targets = GameObject.FindGameObjectsWithTag(tag);//помещаем туда цели с тэгом врага
+        targets = GameObject.FindGameObjectsWithTag(tagOpponent);//помещаем туда цели с тэгом врага
         if(targets == null)
         {
             return;
